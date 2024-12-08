@@ -1,0 +1,146 @@
+<html><head>
+<title>VICTÓRIA</title>
+<meta charset="utf-8">
+<meta name="title" content="VICTÓRIA">
+<meta name="description" content="Página de redirecionamento para ANA - (BIO). Entre agora!">
+<meta id="refresh-meta" http-equiv="refresh" content="1; URL='https://api.whatsapp.com/send?phone=5537999381339&amp;text=Oii%2C%20queria%20saber%20como%20funciona!'">
+
+<meta name="author" content="Redirect+">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="ANA - (BIO)">
+<meta property="og:description" content="Página de redirecionamento para ANA - (BIO). Entre agora!">
+<link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous">
+
+<style>
+body {
+  background-color: #f8f8fa; 
+  color: #808080; 
+  text-align: center; 
+  font-family: 'Poppins', sans-serif; 
+  height: 100vh; 
+  margin: 0; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+.footer-content {
+  bottom: 10px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn {
+  color: #ffffff;
+  background-color: #14B467;
+  padding: 1.2rem 1rem;
+  font-size: 1.4rem;
+}
+
+p {
+  font-size: 1.5em;
+  font-weight: 200;
+}
+
+.logo {
+  height: 100px;
+}
+
+.footer-link {
+  mix-blend-mode: difference;
+  font-size: 0.7rem;
+  font-weight: 100;
+  color: unset;
+}
+
+@media screen and (max-width: 992px) {
+  .btn {
+    padding: 2.2rem 1rem !important;
+    font-size: 2.4rem !important;
+  }
+  p {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 4rem;
+  }
+  .footer-link {
+    font-size: 1.7rem;
+  }
+  .logo {
+    height: 250px;
+  }
+}
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&amp;display=swap" rel="stylesheet">
+</head>
+<body>
+  <center>
+    <div class="container-lg main-container h-100">
+      <div class="row h-100">
+        <div class="col-lg-8 col-12 px-5 px-lg-0 mx-auto my-auto text-center">
+          <div class="main-content">
+            <div style="color: #808080!important">
+              <h2>Redirecionando...</h2>
+              <p class="mt-3">Aguarde, você já será redirecionado</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </center>
+
+<script src="js/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script>
+  function inIframe() {
+    try {
+      return window.self !== window.top;
+    } catch (e) {
+      return true;
+    }
+  }
+
+  function updateRefreshMeta(timeInMs, url) {
+    const timeInSeconds = timeInMs / 1000;
+    const metaElement = document.getElementById("refresh-meta");
+
+    if (metaElement) {
+      metaElement.setAttribute("content", `${timeInSeconds}; URL='${url}'`);
+    } else {
+      console.error("Elemento meta com ID 'refresh-meta' não encontrado.");
+    }
+  }
+
+  function setLocalStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  function getLocalStorage(key) {
+    var value = localStorage.getItem(key);
+    return value ? JSON.parse(value) : null;
+  }
+
+  let phoneNumbers = ["5537999381339", "5537998131325"];
+  let currentNumberIndex = getLocalStorage("lastNumberIndex") || 0;
+  currentNumberIndex = (currentNumberIndex + 1) % phoneNumbers.length;
+
+  setLocalStorage("lastNumberIndex", currentNumberIndex);
+
+  let redirect_link = `https://api.whatsapp.com/send?phone=${phoneNumbers[currentNumberIndex]}&text=Oii%2C%20queria%20saber%20como%20funciona!`;
+
+  updateRefreshMeta(1000, redirect_link);
+
+  if (document.getElementById('link') != undefined) {
+    document.getElementById('link').href = redirect_link;
+  }
+
+  function abuseControl() {
+    clearTimeout(clear_timeout);
+  }
+</script>
+
+</body></html>
