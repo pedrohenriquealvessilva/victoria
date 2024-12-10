@@ -1,5 +1,5 @@
 <html><head>
-<title>VICTÓRIA</title>
+<title>VICTÓRIA - BIO</title>
 <meta charset="utf-8">
 <meta name="title" content="VICTÓRIA">
 <meta name="description" content="Página de redirecionamento para ANA - (BIO). Entre agora!">
@@ -96,25 +96,6 @@ p {
 <script src="js/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
 <script src="js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script>
-  function inIframe() {
-    try {
-      return window.self !== window.top;
-    } catch (e) {
-      return true;
-    }
-  }
-
-  function updateRefreshMeta(timeInMs, url) {
-    const timeInSeconds = timeInMs / 1000;
-    const metaElement = document.getElementById("refresh-meta");
-
-    if (metaElement) {
-      metaElement.setAttribute("content", `${timeInSeconds}; URL='${url}'`);
-    } else {
-      console.error("Elemento meta com ID 'refresh-meta' não encontrado.");
-    }
-  }
-
   function setLocalStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
   }
@@ -124,23 +105,24 @@ p {
     return value ? JSON.parse(value) : null;
   }
 
+  // Lista de números para redirecionar
   let phoneNumbers = ["5537999381339", "5537998131325", "5537999028829"];
+  
+  // Obtém o índice do último número usado
   let currentNumberIndex = getLocalStorage("lastNumberIndex") || 0;
+  
+  // Calcula o próximo índice
   currentNumberIndex = (currentNumberIndex + 1) % phoneNumbers.length;
-
+  
+  // Salva o índice para a próxima execução
   setLocalStorage("lastNumberIndex", currentNumberIndex);
 
+  // Gera o link de redirecionamento
   let redirect_link = `https://api.whatsapp.com/send?phone=${phoneNumbers[currentNumberIndex]}&text=Oii%2C%20queria%20saber%20como%20funciona!`;
 
-  updateRefreshMeta(1000, redirect_link);
-
-  if (document.getElementById('link') != undefined) {
-    document.getElementById('link').href = redirect_link;
-  }
-
-  function abuseControl() {
-    clearTimeout(clear_timeout);
-  }
+  // Redireciona imediatamente
+  window.location.href = redirect_link;
 </script>
+
 
 </body></html>
